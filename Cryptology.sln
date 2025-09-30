@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "cryptology.client", "cryptology.client\cryptology.client.esproj", "{92FC0B45-3AD5-F33B-B1D4-7EC7CD0B5C74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptology.Server", "Cryptology.Server\Cryptology.Server.csproj", "{D2029FEC-EFB4-4422-AFFE-BF576A651F99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92FC0B45-3AD5-F33B-B1D4-7EC7CD0B5C74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92FC0B45-3AD5-F33B-B1D4-7EC7CD0B5C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92FC0B45-3AD5-F33B-B1D4-7EC7CD0B5C74}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{92FC0B45-3AD5-F33B-B1D4-7EC7CD0B5C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92FC0B45-3AD5-F33B-B1D4-7EC7CD0B5C74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92FC0B45-3AD5-F33B-B1D4-7EC7CD0B5C74}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D2029FEC-EFB4-4422-AFFE-BF576A651F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2029FEC-EFB4-4422-AFFE-BF576A651F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2029FEC-EFB4-4422-AFFE-BF576A651F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2029FEC-EFB4-4422-AFFE-BF576A651F99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A51AF8A6-B028-4F54-B82F-8356870C613C}
+	EndGlobalSection
+EndGlobal
