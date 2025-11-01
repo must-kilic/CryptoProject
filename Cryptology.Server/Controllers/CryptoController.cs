@@ -1,21 +1,59 @@
 using Microsoft.AspNetCore.Mvc;
+using Cryptology.Server.Services;
+using Cryptology.Server.Models;
 
-namespace CryptoProject.Controllers
+namespace Cryptology.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class CryptoController : ControllerBase
     {
-        [HttpPost("echo")]
-        public IActionResult Echo([FromBody] MessageDto dto)
-        {
-            // Þimdilik sadece gelen mesajý geri gönderiyoruz
-            return Ok(new { received = dto.Text });
-        }
-    }
+        private readonly Dictionary<string, ICryptoService> _services;
 
-    public class MessageDto
-    {
-        public string Text { get; set; } = "";
+        public CryptoController()
+        {
+            _services = new()
+            {
+                { "caesar", new CaesarCipher() },
+                // {"vigenere", new VigenereCipher()},
+                // {"hill", new HillCipher()},
+                // {"aes", new AESService()},
+                // {"rsa", new RSAService()},
+            };
+        }
+
+        [HttpPost("{algorithm}/encrypt")]
+        public IActionResult Encrypt(string algorithm, [FromBody] CryptoRequest request)
+        {
+            if (!_services.ContainsKey(algorithm.ToLower()))
+                return NotFound(new { error = "Geçersiz algoritma" });
+
+            try
+            {
+                string result = _services[algorithm.ToLower()].Encrypt(request.Text, request.Key);
+                return Ok(new { encrypted = result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
+        [HttpPost("{algorithm}/decrypt")]
+        public IActionResult Decrypt(string algorithm, [FromBody] CryptoRequest request)
+        {
+            if (!_services.ContainsKey(algorithm.ToLower()))
+                return NotFound(new { error = "Geçersiz algoritma" });
+
+            try
+            {
+                string result = _services[algorithm.ToLower()].Decrypt(request.Text, request.Key);
+                return Ok(new { decrypted = result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
     }
 }
