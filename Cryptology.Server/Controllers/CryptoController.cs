@@ -15,8 +15,8 @@ namespace Cryptology.Server.Controllers
             _services = new()
             {
                 { "caesar", new CaesarCipher() },
-                // {"vigenere", new VigenereCipher()},
-                // {"hill", new HillCipher()},
+                {"playfair", new PlayfairCipher()},
+                {"substitution", new SubstitutionCipher()},
                 // {"aes", new AESService()},
                 // {"rsa", new RSAService()},
             };

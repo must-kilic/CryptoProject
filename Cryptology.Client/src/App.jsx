@@ -66,19 +66,13 @@ function App() {
                                 onChange={(e) => setAlgorithm(e.target.value)}
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
                             >
-                                <option value="caesar">Caesar Cipher</option>
-                                <option value="vigenere" disabled>
-                                    Vigenere Cipher (yakında)
-                                </option>
-                                <option value="hill" disabled>
-                                    Hill Cipher (yakında)
-                                </option>
-                                <option value="aes" disabled>
-                                    AES (yakında)
-                                </option>
-                                <option value="rsa" disabled>
-                                    RSA (yakında)
-                                </option>
+                                <optgroup label="Klasik Kripto Şifreleme">
+                                    <option value="caesar">Sezar Şifreleme</option>
+                                    <option value="playfair">Playfair Şifreleme</option>
+                                    <option value="vigenere" disabled>Vigenere Cipher</option>
+                                    <option value="substitution">Substitution Cipher</option>
+                                    <option value="affine" disabled>Affine Cipher</option>
+                                </optgroup>
                             </select>
                         </div>
                     </div>
