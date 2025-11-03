@@ -1,4 +1,9 @@
 ﻿import React, { useState } from "react";
+import TextInput from "./components/TextInput";
+import KeyInput from "./components/KeyInput";
+import AlgorithmSelector from "./components/AlgorithmSelector";
+import ActionButtons from "./components/ActionButtons";
+import ResultBox from "./components/ResultBox";
 
 function App() {
     const [text, setText] = useState("");
@@ -20,7 +25,7 @@ function App() {
             const data = await res.json();
             setResult(data.encrypted || data.decrypted || data.error || "Sonuç alınamadı.");
         } catch (err) {
-            setResult("Bağlantı hatası!");
+            setResult("Bağlantı hatası!: ", err);
         }
     };
 
@@ -33,82 +38,25 @@ function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col space-y-4">
-                        <div>
-                            <label className="block text-gray-700 font-medium mb-2">
-                                Metin:
-                            </label>
-                            <textarea
-                                value={text}
-                                onChange={(e) => setText(e.target.value)}
-                                className="w-full h-28 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none resize-none"
-                                placeholder="Şifrelenecek veya çözülecek metni girin..."
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-gray-700 font-medium mb-2">
-                                Anahtar (Key):
-                            </label>
-                            <input
-                                value={key}
-                                onChange={(e) => setKey(e.target.value)}
-                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
-                                placeholder="Örn: 3 veya ABC"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-gray-700 font-medium mb-2">
-                                Algoritma:
-                            </label>
-                            <select
-                                value={algorithm}
-                                onChange={(e) => setAlgorithm(e.target.value)}
-                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
-                            >
-                                <optgroup label="Klasik Kripto Şifreleme">
-                                    <option value="caesar">Sezar Şifreleme</option>
-                                    <option value="playfair">Playfair Şifreleme</option>
-                                    <option value="vigenere" disabled>Vigenere Cipher</option>
-                                    <option value="substitution">Substitution Cipher</option>
-                                    <option value="affine" disabled>Affine Cipher</option>
-                                </optgroup>
-                            </select>
-                        </div>
+                        <TextInput text={text} setText={setText} />
+                        <KeyInput keyValue={key} setKeyValue={setKey} />
+                        <AlgorithmSelector algorithm={algorithm} setAlgorithm={setAlgorithm} />
                     </div>
 
                     <div className="flex flex-col justify-between">
-                        <div className="space-y-3">
-                            <button
-                                onClick={() => sendRequest("encrypt")}
-                                className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-200"
-                            >
-                                🔒 Şifrele
-                            </button>
-
-                            <button
-                                onClick={() => sendRequest("decrypt")}
-                                className="w-full bg-green-600 text-white font-semibold py-3 rounded-lg hover:bg-green-700 transition duration-200"
-                            >
-                                🔓 Çöz
-                            </button>
-                        </div>
-
-                        <div className="mt-8">
-                            <h2 className="text-gray-700 font-semibold mb-2">Sonuç:</h2>
-                            <div className="bg-gray-50 border border-gray-300 rounded-lg p-3 h-28 overflow-auto text-gray-800 shadow-inner">
-                                {result || "Henüz bir işlem yapılmadı."}
-                            </div>
-                        </div>
+                        <ActionButtons
+                            onEncrypt={() => sendRequest("encrypt")}
+                            onDecrypt={() => sendRequest("decrypt")}
+                        />
+                        <ResultBox result={result} />
                     </div>
                 </div>
 
                 <div className="text-center text-sm text-gray-500 mt-6">
                     <div>
-                        <br /><br /> <br /><br /> <br/><br/>
+                        <br /><br /><br /><br /><br /><br />
                         © 2025 Cryptology Project | React + .NET Core
                     </div>
-                    
                 </div>
             </div>
         </div>

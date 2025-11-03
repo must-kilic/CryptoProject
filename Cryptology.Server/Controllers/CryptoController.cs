@@ -12,13 +12,14 @@ namespace Cryptology.Server.Controllers
 
         public CryptoController()
         {
+
             _services = new()
             {
                 { "caesar", new CaesarCipher() },
                 {"playfair", new PlayfairCipher()},
                 {"substitution", new SubstitutionCipher()},
-                // {"aes", new AESService()},
-                // {"rsa", new RSAService()},
+                {"vigenere", new VigenereCipher()},
+                {"affine", new AffineCipher()},
             };
         }
 
