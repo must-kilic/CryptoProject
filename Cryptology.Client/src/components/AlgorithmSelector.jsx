@@ -17,6 +17,12 @@ function AlgorithmSelector({ algorithm, setAlgorithm }) {
                     <option value="vigenere">Vigenere Cipher</option>
                     <option value="substitution">Substitution Cipher</option>
                     <option value="affine">Affine Cipher</option>
+                    <option value="railfence">Rail Fence Şifreleme</option>
+                    <option value="rotate" disabled>Rotate Şifreleme</option>
+                    <option value="columnartransposition" disabled>Columnar Transposition Cipher</option>
+                    <option value="polybius" disabled>Polybius Cipher</option>
+                    <option value="pigpen" disabled>Pigpen Cipher</option>
+                    <option value="hill" disabled>Hill Cipher</option>
                 </optgroup>
             </select>
         </div>

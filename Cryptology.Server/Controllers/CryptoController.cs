@@ -20,6 +20,7 @@ namespace Cryptology.Server.Controllers
                 {"substitution", new SubstitutionCipher()},
                 {"vigenere", new VigenereCipher()},
                 {"affine", new AffineCipher()},
+                {"railfence", new RailFenceCipher()},
             };
         }
 
