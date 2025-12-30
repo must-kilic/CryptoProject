@@ -1,16 +1,13 @@
-﻿import React from "react";
-
-function KeyInput({ keyValue, setKeyValue }) {
+﻿function KeyInput({ keyValue, setKeyValue, disabled }) {
     return (
         <div>
-            <label className="block text-gray-700 font-medium mb-2">
-                Anahtar (Key):
-            </label>
+            <label className="block font-medium mb-2">Anahtar</label>
             <input
                 value={keyValue}
                 onChange={(e) => setKeyValue(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
-                placeholder="Örn: 3 veya ABC"
+                disabled={disabled}
+                className="w-full p-3 border rounded"
+                placeholder="Anahtar giriniz"
             />
         </div>
     );

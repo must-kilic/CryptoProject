@@ -1,23 +1,29 @@
+using Cryptology.Server.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// CORS ayarý
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
-        policy => policy
-            .WithOrigins("http://localhost:5173")
-            .AllowAnyHeader()
-            .AllowAnyMethod());
+        p => p.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod());
 });
 
+builder.Services.AddSingleton<RsaCipher>();
+builder.Services.AddSingleton<AesCipher>();
+builder.Services.AddSingleton<DesCipher>();
+builder.Services.AddSingleton<SimpleAesCipher>();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-
-app.UseCors("AllowReactApp"); 
-
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseCors("AllowReactApp");
 app.MapControllers();
 
 app.Run();

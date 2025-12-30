@@ -3,26 +3,28 @@
 function AlgorithmSelector({ algorithm, setAlgorithm }) {
     return (
         <div>
-            <label className="block text-gray-700 font-medium mb-2">
-                Algoritma:
-            </label>
+            <label className="block font-medium mb-2">Algoritma</label>
             <select
                 value={algorithm}
                 onChange={(e) => setAlgorithm(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+                className="w-full p-3 border rounded"
             >
-                <optgroup label="Klasik Kripto Şifreleme">
-                    <option value="caesar">Sezar Şifreleme</option>
-                    <option value="playfair">Playfair Şifreleme</option>
-                    <option value="vigenere">Vigenere Cipher</option>
-                    <option value="substitution">Substitution Cipher</option>
-                    <option value="affine">Affine Cipher</option>
-                    <option value="railfence">Rail Fence Şifreleme</option>
-                    <option value="rotate" disabled>Rotate Şifreleme</option>
-                    <option value="columnartransposition" disabled>Columnar Transposition Cipher</option>
-                    <option value="polybius" disabled>Polybius Cipher</option>
-                    <option value="pigpen" disabled>Pigpen Cipher</option>
-                    <option value="hill" disabled>Hill Cipher</option>
+                <optgroup label="Klasik Şifreleme">
+                    <option value="caesar">Caesar</option>
+                    <option value="affine">Affine</option>
+                    <option value="vigenere">Vigenere</option>
+                    <option value="playfair">Playfair</option>
+                    <option value="substitution">Substitution</option>
+                    <option value="railfence">Rail Fence</option>
+                </optgroup>
+
+                <optgroup label="Modern - Library">
+                    <option value="aes">AES-128</option>
+                    <option value="des">DES</option>
+                </optgroup>
+
+                <optgroup label="Modern - Manual">
+                    <option value="aes-manual">AES (Manual)</option>
                 </optgroup>
             </select>
         </div>

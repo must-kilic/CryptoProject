@@ -1,12 +1,10 @@
-﻿import React from "react";
+﻿function ResultBox({ result }) {
+    if (!result) return null;
 
-function ResultBox({ result }) {
     return (
-        <div className="mt-8">
-            <h2 className="text-gray-700 font-semibold mb-2">Sonuç:</h2>
-            <div className="bg-gray-50 border border-gray-300 rounded-lg p-3 h-28 overflow-auto text-gray-800 shadow-inner">
-                {result || "Henüz bir işlem yapılmadı."}
-            </div>
+        <div className="mt-4 p-3 bg-gray-100 rounded break-all">
+            <strong>Sonuç:</strong>
+            <div>{result}</div>
         </div>
     );
 }

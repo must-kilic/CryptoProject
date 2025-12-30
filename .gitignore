@@ -6,5 +6,5 @@ obj
 .vs
 
 # Node
-Cryptology.Clientnode_modules
-Cryptology.Clientbuild
+Cryptology.Client/node_modules
+Cryptology.Client/build
