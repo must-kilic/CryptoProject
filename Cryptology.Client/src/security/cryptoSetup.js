@@ -1,4 +1,4 @@
-﻿const API_URL = "http://192.168.1.34:5000/api/crypto";
+﻿const API_URL = "http://10.193.243.225:5000/api/crypto";
 
 
 let aesKey = null;
@@ -53,22 +53,25 @@ export async function encryptWithAes(text) {
     if (!aesKey)
         throw new Error("AES key hazır değil!");
 
-    // 🔑 HER ŞİFRELEMEDE YENİ IV
-    const iv = crypto.getRandomValues(new Uint8Array(16));
+    // 🔑 HER MESAJ İÇİN YENİ IV
+    const iv = window.crypto.getRandomValues(new Uint8Array(16));
+
     const encoded = new TextEncoder().encode(text);
 
-    const encrypted = await crypto.subtle.encrypt(
+    const encrypted = await window.crypto.subtle.encrypt(
         { name: "AES-CBC", iv },
         aesKey,
         encoded
     );
 
+    // IV + ciphertext
     const combined = new Uint8Array(iv.length + encrypted.byteLength);
     combined.set(iv, 0);
     combined.set(new Uint8Array(encrypted), iv.length);
 
-    return uint8ToBase64(combined);
+    return btoa(String.fromCharCode(...combined));
 }
+
 
 /* =========================
    BASE64 HELPER (ÇOK ÖNEMLİ)

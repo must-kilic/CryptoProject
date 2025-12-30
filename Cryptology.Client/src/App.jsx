@@ -17,9 +17,9 @@ function App() {
     const [encryptedText, setEncryptedText] = useState("");
     const [decryptedText, setDecryptedText] = useState("");
     const [steps, setSteps] = useState([]);
-
+    const [keyReady, setKeyReady] = useState(false);
     useEffect(() => {
-        initializeKeyExchange();
+        initializeKeyExchange().then(() => setKeyReady(true));
     }, []);
 
     const sendRequest = async (mode) => {
@@ -55,6 +55,10 @@ function App() {
                MODERN – LIBRARY (AES)
             ========================= */
             if (algorithm === "aes") {
+                if (algorithm === "aes" && !keyReady) {
+                    setDecryptedText("❌ AES key henüz hazır değil");
+                    return;
+                }
                 const encrypted = await encryptWithAes(text);
                 setEncryptedText(encrypted);
 
@@ -132,7 +136,7 @@ function App() {
 
     return (
         <div className="min-h-screen bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl shadow-2xl w-full max-w-5xl p-10 mx-auto">
+            <div className="bg-white rounded-3xl shadow-2xl w-full max-w-5xl p-10 mx-auto pl-14 pr-14">
 
                 <h1 className="text-4xl font-extrabold text-center text-indigo-700 mb-10">
                     🔐 Cryptology Tool
@@ -158,7 +162,7 @@ function App() {
                         />
                     </div>
 
-                    <div className="space-y-6">
+                    <div className="space-y-6 min-w-0">
                         <div className="bg-indigo-50 p-5 rounded">
                             <strong>🔒 Şifreli Mesaj</strong>
                             <p className="break-all">{encryptedText || "—"}</p>
@@ -173,9 +177,11 @@ function App() {
 
 
                         {algorithm === "aes-manual" && steps.length > 0 && (
-                            <div className="overflow-x-auto">
+
+                            <div className="mt-8 border-2 border-indigo-400 rounded-2xl p-4 overflow-x-auto">
                                 <ManualAESPanel steps={steps} />
                             </div>
+
                         )}
                     </div>
                 </div>

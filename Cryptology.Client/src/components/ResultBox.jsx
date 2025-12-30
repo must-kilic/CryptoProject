@@ -1,4 +1,4 @@
-﻿function ResultBox({ result }) {
+﻿    function ResultBox({ result }) {
     if (!result) return null;
 
     return (
